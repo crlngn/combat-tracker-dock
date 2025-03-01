@@ -414,8 +414,6 @@ export class CombatDock extends Application {
         const carouselStyle = game.settings.get(MODULE_ID, "carouselStyle");
         const combatantsEl = this.element[0].querySelector("#combatants");
         if (this.trueCarousel) {
-            if (carouselStyle == 2) return;
-
             if (carouselStyle == 1)
                 return combatantsEl.scrollTo({
                     top: 0,
@@ -428,6 +426,7 @@ export class CombatDock extends Application {
                 behavior: "smooth",
             });
         } else {
+            if (carouselStyle == 2) return;
             const current = this.portraits.find((p) => p.combatant === this.combat.combatants.get(this.combat?.current?.combatantId));
             if (!current) return;
             const el = current.element;
